@@ -62,6 +62,13 @@ function setUpAudio() {
   if (audioCtx) {
     return;
   }
+  // if the page is opened straight from a folder (file://) the browser won't let
+  // the analyser read the sound, and it would go silent. so skip the effects there.
+  if (location.protocol == "file:") {
+    console.log("Opened from a file, sound effects visuals are off. Use a web server to see them.");
+    audioCtx = "off";
+    return;
+  }
   audioCtx = new AudioContext();
   analyser = audioCtx.createAnalyser();
   analyser.fftSize = 128;
