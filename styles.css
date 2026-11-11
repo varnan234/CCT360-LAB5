@@ -120,17 +120,9 @@ audio {
   border-color: white;
 }
 
-/* card shakes while its sound is playing */
+/* orange border while the card's sound is playing */
 .playing {
   border-color: orange;
-  animation: shake 0.4s infinite;
-}
-
-@keyframes shake {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(-3deg); }
-  75% { transform: rotate(3deg); }
-  100% { transform: rotate(0deg); }
 }
 
 .credits {

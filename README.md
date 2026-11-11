@@ -24,7 +24,7 @@ I couldn't find a marfa recording I was allowed to use, so I made the marfa rhyt
 - While it plays, the picture, title, text and page background change to match each part of the day (using timeupdate and if/else)
 - The picture fades between scenes and slowly zooms in while the sound is playing
 - The skip buttons jump to each part, and the current one is highlighted
-- The cards at the bottom play single sounds and shake while they play
+- The cards at the bottom play single sounds and get an orange border while they play
 
 ## Sound credits (CC0, from Freesound)
 

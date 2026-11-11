@@ -122,7 +122,7 @@ function setUpCard(name) {
     }
   });
 
-  // stop shaking when the sound finishes
+  // take the orange border off when the sound finishes
   sound.addEventListener("ended", function () {
     card.classList.remove("playing");
   });
