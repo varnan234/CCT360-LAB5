@@ -6,15 +6,12 @@
 // ---------- the scenes in the soundscape ----------
 
 var scenes = [
-  { start: 0, img: "images/dawn.jpg", title: "Dawn", text: "The azaan from the old city before the sun is up." },
-  { start: 14, img: "images/temple.jpg", title: "Temple", text: "Bells at the mandir while the street starts waking up." },
-  { start: 26, img: "images/rush.jpg", title: "Morning rush", text: "Autos, bikes and honking. Everyone is late for something." },
-  { start: 42, img: "images/evening.jpg", title: "Evening chai", text: "Friends talking in Telugu near Charminar after work." },
-  { start: 56, img: "images/wedding.jpg", title: "Wedding night", text: "Somewhere there's always a baraat, and the marfa band is going hard." },
-  { start: 70, img: "images/monsoon.jpg", title: "Monsoon", text: "The rain comes in and the whole city slows down." }
+  { start: 0, img: "images/dawn.jpg", title: "Fajr", text: "The morning azaan from the old city, before the sun is up." },
+  { start: 14, img: "images/temple.jpg", title: "Temple", text: "Bells at Birla Mandir while the street starts waking up." },
+  { start: 27, img: "images/evening.jpg", title: "Charminar", text: "Autos, honking, bargaining, friends talking in Telugu." },
+  { start: 50, img: "images/wedding.jpg", title: "Wedding night", text: "Somewhere there's always a baraat, and the marfa band is going hard." },
+  { start: 64, img: "images/night.jpg", title: "Isha", text: "The last azaan of the day. The city finally goes quiet." }
 ];
-
-var MONSOON = 5;   // index of the monsoon scene (for the rain effect)
 
 var currentScene = 0;
 var showingA = true;   // which of the two <img> tags is on top right now
@@ -110,13 +107,13 @@ soundscape.addEventListener("timeupdate", function () {
   if (!dragging) {
     seekBar.value = soundscape.currentTime;
   }
-  timeText.innerHTML = formatTime(soundscape.currentTime) + " / " + formatTime(soundscape.duration || 89);
+  timeText.innerHTML = formatTime(soundscape.currentTime) + " / " + formatTime(soundscape.duration || 88);
   checkScene();
 });
 
 seekBar.addEventListener("input", function () {
   dragging = true;
-  timeText.innerHTML = formatTime(seekBar.value) + " / " + formatTime(soundscape.duration || 89);
+  timeText.innerHTML = formatTime(seekBar.value) + " / " + formatTime(soundscape.duration || 88);
 });
 
 seekBar.addEventListener("change", function () {
@@ -290,8 +287,8 @@ function draw() {
   var loudness = total / freqData.length / 255;
 
   // 1. the picture gets brighter when it's loud
-  // (in the monsoon part it starts darker and greyer, like a storm)
-  var raining = (currentScene == MONSOON && !soundscape.paused) || !padSounds.rain.paused;
+  // (when the rain card is playing it goes darker and greyer, like a storm)
+  var raining = !padSounds.rain.paused;
   var bright = 0.75 + loudness * 0.9;
   var grey = 0;
   if (raining) {
@@ -313,7 +310,7 @@ function draw() {
     barsCtx.fillRect(i * barWidth, bars.height - h, barWidth - 2, h);
   }
 
-  // 3. rain when it's the monsoon part, or when the rain pad is playing
+  // 3. rain when the rain card is playing
   drawRain(raining, loudness);
 
   // 4. lightning: a sudden jump in loudness during the rain = thunder

@@ -12,18 +12,18 @@
   <div id="pageBg"></div>
 
   <h1>Sounds of Hyderabad</h1>
-  <p class="intro">One day in my hometown, from the morning azaan to the evening rain. Press play and the picture follows the sound.</p>
+  <p class="intro">One day in my hometown, from the morning azaan to the night one. Press play and the picture follows the sound.</p>
 
   <!-- PART B: the visual part. picture + effects on top -->
   <div id="stage">
-    <img id="sceneA" class="scene-img show" src="images/dawn.jpg" alt="Charminar at dawn">
+    <img id="sceneA" class="scene-img show" src="images/dawn.jpg" alt="Charminar minarets in the morning">
     <img id="sceneB" class="scene-img" src="images/dawn.jpg" alt="">
     <canvas id="rainCanvas"></canvas>
     <div id="flash"></div>
     <canvas id="bars"></canvas>
     <div id="caption">
-      <h2 id="sceneTitle">Dawn</h2>
-      <p id="sceneText">The azaan from the old city before the sun is up.</p>
+      <h2 id="sceneTitle">Fajr</h2>
+      <p id="sceneText">The morning azaan from the old city, before the sun is up.</p>
     </div>
   </div>
 
@@ -32,8 +32,8 @@
 
   <div id="player">
     <button id="playBtn">&#9654; Play</button>
-    <span id="timeText">0:00 / 1:29</span>
-    <input type="range" id="seekBar" min="0" max="89" step="0.1" value="0">
+    <span id="timeText">0:00 / 1:28</span>
+    <input type="range" id="seekBar" min="0" max="88" step="0.1" value="0">
     <button id="muteBtn">Mute</button>
     <label for="volumeBar">Volume</label>
     <input type="range" id="volumeBar" min="0" max="1" step="0.05" value="0.8">
@@ -41,12 +41,11 @@
 
   <!-- jump to a part of the day -->
   <div id="chapters">
-    <button class="chapter" data-time="0">Dawn</button>
+    <button class="chapter" data-time="0">Fajr</button>
     <button class="chapter" data-time="14">Temple</button>
-    <button class="chapter" data-time="26">Morning rush</button>
-    <button class="chapter" data-time="42">Evening chai</button>
-    <button class="chapter" data-time="56">Wedding night</button>
-    <button class="chapter" data-time="70">Monsoon</button>
+    <button class="chapter" data-time="27">Charminar</button>
+    <button class="chapter" data-time="50">Marfa</button>
+    <button class="chapter" data-time="64">Isha</button>
   </div>
 
   <h2>Play a sound</h2>
@@ -62,7 +61,7 @@
 
   <p class="note credits">
     Sounds from Freesound (CC0): Manindhra_D, ashwinrajashekar, Kriaa, LoopUdu, Techienanna, Agim. The marfa rhythm is my own recreation.
-    Photos from Unsplash: Swipe, Naveen Naidu, Prabhav Kashyap Godavarthy, Mr Cool Hitman, Royal Photography, Rishabh Modi, Ananthan Chithiraikani, atelierbyvineeth, Sreekumar Pillai.
+    Photos from Unsplash: Swipe, Naveen Naidu, Prabhav Kashyap Godavarthy, Mr Cool Hitman, Royal Photography, Ashish, Rishabh Modi, Ananthan Chithiraikani, atelierbyvineeth, Sreekumar Pillai.
     Full list in the README.
   </p>
 
