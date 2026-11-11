@@ -1,0 +1,212 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #1b1b1b;
+  color: #f2f2f2;
+  margin: 20px;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+.intro {
+  color: #cccccc;
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
+
+button {
+  font-size: 15px;
+  padding: 8px 14px;
+  margin: 4px;
+  cursor: pointer;
+}
+
+/* ---------- the picture area ---------- */
+#stage {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 3px solid black;
+  background-color: black;
+}
+
+/* two images on top of each other so one can fade into the other */
+.scene-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+.scene-img.show {
+  opacity: 1;
+}
+
+/* slow zoom while the sound is playing */
+.playing .scene-img.show {
+  animation: slowZoom 20s linear infinite alternate;
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.12); }
+}
+
+#rainCanvas,
+#bars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* white flash for thunder */
+#flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#caption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 12px 18px;
+  box-sizing: border-box;
+  text-align: left;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
+
+#caption h2 {
+  margin: 0;
+  font-size: 26px;
+}
+
+#caption p {
+  margin: 4px 0 0;
+  color: #dddddd;
+}
+
+/* ---------- player ---------- */
+#player {
+  max-width: 900px;
+  margin: 12px auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#seekBar {
+  flex: 1;
+  min-width: 200px;
+}
+
+#timeText {
+  font-family: monospace;
+  font-size: 15px;
+}
+
+#chapters {
+  margin-bottom: 25px;
+}
+
+.chapter.active {
+  background-color: #f0b429;
+  border-color: #f0b429;
+}
+
+/* ---------- sound pads ---------- */
+#pads {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pad {
+  width: 150px;
+  padding: 0;
+  border: 3px solid #444444;
+  background-color: #2b2b2b;
+  color: white;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.pad img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  display: block;
+}
+
+.pad span {
+  display: block;
+  padding: 8px;
+}
+
+.pad:hover {
+  transform: translateY(-4px);
+}
+
+/* while a pad's sound is playing */
+.pad.on {
+  border-color: #f0b429;
+  animation: wobble 0.5s infinite;
+}
+
+@keyframes wobble {
+  0% { transform: rotate(0deg) scale(1.05); }
+  25% { transform: rotate(-2deg) scale(1.05); }
+  75% { transform: rotate(2deg) scale(1.05); }
+  100% { transform: rotate(0deg) scale(1.05); }
+}
+
+.note {
+  font-size: 13px;
+  color: #999999;
+}
+
+.credits {
+  max-width: 700px;
+  margin: 30px auto 0;
+}
+
+/* phones */
+@media (max-width: 600px) {
+  body {
+    margin: 10px;
+  }
+
+  #caption h2 {
+    font-size: 20px;
+  }
+
+  #caption p {
+    font-size: 13px;
+  }
+
+  .pad {
+    width: 46%;
+  }
+}
