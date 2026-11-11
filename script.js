@@ -10,8 +10,11 @@ var scenes = [
   { start: 14, img: "images/temple.jpg", title: "Temple", text: "Bells at the mandir while the street starts waking up." },
   { start: 26, img: "images/rush.jpg", title: "Morning rush", text: "Autos, bikes and honking. Everyone is late for something." },
   { start: 42, img: "images/evening.jpg", title: "Evening chai", text: "Friends talking in Telugu near Charminar after work." },
-  { start: 60, img: "images/monsoon.jpg", title: "Monsoon", text: "The rain comes in and the whole city slows down." }
+  { start: 56, img: "images/wedding.jpg", title: "Wedding night", text: "Somewhere there's always a baraat, and the marfa band is going hard." },
+  { start: 70, img: "images/monsoon.jpg", title: "Monsoon", text: "The rain comes in and the whole city slows down." }
 ];
+
+var MONSOON = 5;   // index of the monsoon scene (for the rain effect)
 
 var currentScene = 0;
 var showingA = true;   // which of the two <img> tags is on top right now
@@ -43,6 +46,7 @@ var padSounds = {
   bells: new Audio("audio/bells.mp3"),
   auto: new Audio("audio/auto.mp3"),
   chai: new Audio("audio/chai.mp3"),
+  marfa: new Audio("audio/marfa.mp3"),
   rain: new Audio("audio/rain.mp3")
 };
 
@@ -106,13 +110,13 @@ soundscape.addEventListener("timeupdate", function () {
   if (!dragging) {
     seekBar.value = soundscape.currentTime;
   }
-  timeText.innerHTML = formatTime(soundscape.currentTime) + " / " + formatTime(soundscape.duration || 84);
+  timeText.innerHTML = formatTime(soundscape.currentTime) + " / " + formatTime(soundscape.duration || 89);
   checkScene();
 });
 
 seekBar.addEventListener("input", function () {
   dragging = true;
-  timeText.innerHTML = formatTime(seekBar.value) + " / " + formatTime(soundscape.duration || 84);
+  timeText.innerHTML = formatTime(seekBar.value) + " / " + formatTime(soundscape.duration || 89);
 });
 
 seekBar.addEventListener("change", function () {
@@ -185,6 +189,9 @@ function showScene(index) {
   sceneTitle.innerHTML = scene.title;
   sceneText.innerHTML = scene.text;
 
+  // the page background changes too
+  document.getElementById("pageBg").style.backgroundImage = "url(" + scene.img + ")";
+
   // highlight the matching chapter button
   for (var i = 0; i < chapterBtns.length; i++) {
     if (i == index) {
@@ -241,7 +248,7 @@ for (var i = 0; i < padBtns.length; i++) {
   });
 }
 
-// keyboard: space = play/pause, 1-5 = pads
+// keyboard: space = play/pause, 1-6 = pads
 document.addEventListener("keydown", function (e) {
   if (e.target.tagName == "INPUT") {
     return;
@@ -249,7 +256,7 @@ document.addEventListener("keydown", function (e) {
   if (e.key == " ") {
     e.preventDefault();
     togglePlay();
-  } else if (e.key >= "1" && e.key <= "5") {
+  } else if (e.key >= "1" && e.key <= "6") {
     playPad(padBtns[Number(e.key) - 1].dataset.sound);
   }
 });
@@ -284,7 +291,7 @@ function draw() {
 
   // 1. the picture gets brighter when it's loud
   // (in the monsoon part it starts darker and greyer, like a storm)
-  var raining = (currentScene == 4 && !soundscape.paused) || !padSounds.rain.paused;
+  var raining = (currentScene == MONSOON && !soundscape.paused) || !padSounds.rain.paused;
   var bright = 0.75 + loudness * 0.9;
   var grey = 0;
   if (raining) {

@@ -8,6 +8,23 @@ body {
 
 h1 {
   margin-bottom: 5px;
+  text-shadow: 0 2px 8px black;
+}
+
+/* the background photo. it's bigger than the screen so the blur
+   doesn't leave light edges */
+#pageBg {
+  position: fixed;
+  top: -60px;
+  left: -60px;
+  right: -60px;
+  bottom: -60px;
+  z-index: -1;
+  background-image: url("images/dawn.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(18px) brightness(0.35);
+  transition: background-image 2s;
 }
 
 .intro {
@@ -144,7 +161,7 @@ button {
 }
 
 .pad {
-  width: 150px;
+  width: 135px;
   padding: 0;
   border: 3px solid #444444;
   background-color: #2b2b2b;
